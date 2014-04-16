@@ -1,0 +1,92 @@
+body {
+	margin: 10px;
+	background-color: darkgray;
+}
+
+h1 {
+	text-align: center;
+}
+
+.shelf-wrapper {
+	margin: 30px auto;
+	width: 702px;	
+}
+
+h2.category {
+	margin: 0 6px;
+	font-family: sans-serif;
+}
+
+.shelf {
+	/* Positioning */
+	margin: 0;
+	padding: 0;
+	height: 140px;
+	width: 702px;
+	overflow: hidden;
+	/* Purdy */
+	background-color: white;
+	border-radius: 5px;
+	border: 1px solid #888;
+}
+
+.shelf-item {
+	overflow: hidden;
+	display: inline-block;
+	width: 100px;
+	height: 120px;
+	margin-top: 10px;
+	margin-left: 10px;
+	border: 1px solid darkgray;
+	background-size: 100%;
+	cursor: pointer;
+	position: relative;
+	top: -150px;
+}
+#shelf-item-0 {
+	background-image: url('../img/flower-0.jpeg'); /*http://www.flickr.com/photos/61926883@N00/484691677/*/
+	left: 200px;
+}
+#shelf-item-1 {
+	background-image: url('../img/flower-1.jpeg'); /*http://www.flickr.com/photos/53231916@N03/7943817814/*/
+	left: 100px;
+}
+#shelf-item-2 {
+	background-image: url('../img/flower-2.jpeg'); /*http://www.flickr.com/photos/79977734@N00/4780011328/*/
+	left: 0px;
+}
+#shelf-item-3 {
+	background-image: url('../img/flower-3.jpeg'); /*http://www.flickr.com/photos/53231916@N03/7844697578/*/
+	left: -100px;
+}
+#shelf-item-4 {
+	background-image: url('../img/flower-4.jpeg'); /*http://www.flickr.com/photos/shine2002/3928026019/*/
+	left: -200px;
+}
+#shelf-item-5 {
+	background-image: url('../img/flower-5.jpeg'); /*http://www.flickr.com/photos/manumilou/6016656690/*/
+	left: -300px;
+}
+
+.meta {
+	position: absolute;
+	bottom: -22px; left: 0; right: 0; height: 18px;
+	padding-top: 4px;
+	font-size: 12px;
+	text-align: center;
+	color: white;
+	font-family: sans-serif;
+	background-color: rgba(0, 100, 0, 0.7);
+	cursor: pointer;
+}
+.meta.sold-out {
+	background-color: rgba(80, 0, 0, 0.7);
+}
+
+#footer {
+	font-size: 12px;
+	position: fixed;
+	bottom: 0; right: 0;
+	margin: 8px;
+	cursor: default;
+}

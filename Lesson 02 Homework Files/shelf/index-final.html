@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery :: Lesson 2 Product Shelf</title>
+
+		<!-- Tip: Start src & href links with no slash for relative paths. -->
+		<script src="./script/jquery.1.9.1.js"></script>
+		<script src="./script/jquery.easing.min.js"></script>
+		<link rel="stylesheet" href="./css/style-final.css"/>
+
+		<script type="text/javascript">
+
+$(document).ready(function() {
+	// Animate in.
+	//$('ul.shelf > li').animate({ top: 5, left: 0 }, 300).animate({ top: 0 }, 100);
+	/*$('ul.shelf > li').each(function(i, el) {
+		$(el).animate({ top: 6, left: (i - 3) * 3 }, 250).animate({ top: 0, left: 0 }, 80);
+	});*/
+	$('ul.shelf > li').animate({ top: 0, left: 0 }, 700, 'easeOutBounce');
+
+	// Set up hover effect.
+	$('ul.shelf > li').hover(
+		function() { $(this).children('.meta').stop().animate({ bottom: 0 }, 250) },
+		function() { $(this).children('.meta').stop().animate({ bottom: -22 }, 100) }
+	)
+});
+
+		</script>
+			
+	</head>
+
+	<body>
+		<h1>The Poster Store</h1>
+		<div class="shelf-wrapper">
+			<h2 class="category">Flowers</h2>
+			<ul class="shelf" id="shelf-flowers">
+				<li class="shelf-item" id="shelf-item-0">
+					<div class="meta">In Stock - $14.95</div>
+				</li>
+				<li class="shelf-item" id="shelf-item-1">
+					<div class="meta">In Stock - $12.95</div>
+				</li>
+				<li class="shelf-item" id="shelf-item-2">
+					<div class="meta sold-out">Sold Out - $8.95</div>
+				</li>
+				<li class="shelf-item" id="shelf-item-3">
+					<div class="meta">In Stock - $18.95</div>
+				</li>
+				<li class="shelf-item" id="shelf-item-4">
+					<div class="meta">In Stock - $4.50</div>
+				</li>
+				<li class="shelf-item" id="shelf-item-5">
+					<div class="meta">In Stock - $12.95</div>
+				</li>
+			</ul>
+		</div>
+		<div id="footer">&copy;2013 Gymnasium Posters Inc.</div>
+	</body>
+</html>
