@@ -1,0 +1,198 @@
+body {
+	margin: 10px;
+	background-color: darkgray;
+}
+
+h1 {
+	text-align: center;
+}
+
+.shelf-wrapper {
+	margin: 30px auto;
+	width: 764px;	
+}
+
+h2.category {
+	margin: 0 26px;
+	font-family: sans-serif;
+}
+
+.nav-arrow {
+	width: 30px;
+	height: 140px;
+	background-color: white;
+	border-top: 1px solid #888;
+	border-bottom: 1px solid #888;
+	text-align: center;
+	line-height: 140px;
+	cursor: pointer;
+	font-size: 18pt;
+	color: darkgray;
+}
+.nav-arrow:hover {
+	background-color: lightgray;
+	font-size: 20pt;
+	color: #888;
+}
+.nav-arrow-left {
+	float: left;
+	border-left: 1px solid #888;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.nav-arrow-right {
+	float: right;
+	border-right: 1px solid #888;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.carousel-wrapper {
+	/* Positioning */
+	height: 140px;
+	width: 702px;
+	overflow: hidden;
+	float: left;
+	/* Purdy */
+	background-color: white;
+	border-top: 1px solid #888;
+	border-bottom: 1px solid #888;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+.shelf {
+	overflow: hidden;
+	height: 140px;
+}
+
+.shelf-item {
+	overflow: hidden;
+	display: inline-block;
+	width: 100px;
+	height: 120px;
+	margin-top: 10px;
+	margin-left: 10px;
+	border: 1px solid darkgray;
+	background-size: 100%;
+	cursor: pointer;
+	position: relative;
+	top: -150px;
+}
+
+.shelf-position-0 {
+	left: 200px;
+}
+.shelf-position-1 {
+	left: 100px;
+}
+.shelf-position-2 {
+	left: 0px;
+}
+.shelf-position-3 {
+	left: -100px;
+}
+.shelf-position-4 {
+	left: -200px;
+}
+.shelf-position-5 {
+	left: -300px;
+}
+
+.meta {
+	position: absolute;
+	bottom: -22px; left: 0; right: 0; height: 18px;
+	padding-top: 4px;
+	font-size: 12px;
+	text-align: center;
+	color: white;
+	font-family: sans-serif;
+	background-color: rgba(0, 100, 0, 0.7);
+	cursor: pointer;
+}
+.meta.sold-out {
+	background-color: rgba(80, 0, 0, 0.7);
+}
+
+
+
+/* Customize pane */
+
+#customize-pane-wrapper {
+	position: absolute;
+	top: 0; bottom: 0; left: 0; right: 0;
+	z-index: 10;
+	display: none; /* The initial (and default) state. */
+}
+#customize-pane {
+	position: absolute;
+	height: 400px;
+	width: 550px;
+	top: 50%;
+	margin-top: -200px;
+	left: 50%;
+	margin-left: -275px;
+
+	background-color: white;
+	border: 2px solid #777;
+	overflow: hidden;
+}
+
+#customize-form {
+	margin: 10px;
+	font-family: sans-serif;
+	width: 200px;
+	position: absolute;
+	top: 0; left: 0; right: 0; bottom: 0;
+	overflow: scroll;
+}
+
+.customize-caption-input {
+	width: 90%;
+	height: 3em;
+	resize: none;
+}
+
+#customize-length-warning {
+	font-size: 0.7em;
+}
+
+
+#customize-poster {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	height: 380px;
+	width: 325px;
+	background-image: url('../img/flowers/11.jpeg');
+	background-size: 100%;
+}
+
+
+.customize-poster-caption {
+	text-align: center;
+	cursor: default;
+	position: absolute;
+	display: inline-block; /* This convinces the element to be only as wideas its text. Using <span> would also work. */
+	margin: 4px;
+	max-width: 80%;
+}
+
+.customize-poster-caption.walter-white {
+	color: white;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.75);
+}
+.customize-poster-caption.jack-black {
+	color: black;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+
+#footer {
+	font-size: 12px;
+	position: fixed;
+	bottom: 0; right: 0;
+	margin: 8px;
+	cursor: default;
+}

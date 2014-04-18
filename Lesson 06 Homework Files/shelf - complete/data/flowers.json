@@ -1,0 +1,98 @@
+[
+  {
+    "id": "1",
+    "imageUrl": "img/flowers/0.jpeg",
+    "price": "$14.95",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/61926883@N00/484691677/"
+  },
+  {
+    "id": "2",
+    "imageUrl": "img/flowers/1.jpeg",
+    "price": "$12.95",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/53231916@N03/7943817814/"
+  },
+  {
+    "id": "3",
+    "imageUrl": "img/flowers/2.jpeg",
+    "price": "$8.95",
+    "inStock": false,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/79977734@N00/4780011328/"
+  },
+  {
+    "id": "4",
+    "imageUrl": "img/flowers/3.jpeg",
+    "price": "$18.95",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/53231916@N03/7844697578/"
+  },
+  {
+    "id": "5",
+    "imageUrl": "img/flowers/4.jpeg",
+    "price": "$4.50",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/shine2002/3928026019/"
+  },
+  {
+    "id": "6",
+    "imageUrl": "img/flowers/5.jpeg",
+    "price": "$12.95",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/manumilou/6016656690/"
+  },
+  {
+    "id": "7",
+    "imageUrl": "img/flowers/6.jpeg",
+    "price": "$14.95",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/83613432@N02/8005266719/"
+  },
+  {
+    "id": "8",
+    "imageUrl": "img/flowers/7.jpeg",
+    "price": "$8.95",
+    "inStock": false,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/dominiqs/137546658/"
+  },
+  {
+    "id": "9",
+    "imageUrl": "img/flowers/8.jpeg",
+    "price": "$12.95",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/paparutzi/2739534215/"
+  },
+  {
+    "id": "10",
+    "imageUrl": "img/flowers/9.jpeg",
+    "price": "$18.95",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/paparutzi/2740373036/"
+  },
+  {
+    "id": "11",
+    "imageUrl": "img/flowers/10.jpeg",
+    "price": "$4.50",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/jwthompson2/168677188/"
+  },
+  {
+    "id": "12",
+    "imageUrl": "img/flowers/11.jpeg",
+    "price": "$12.95",
+    "inStock": true,
+    "category": "Flowers",
+    "attribution": "http://www.flickr.com/photos/tgerus/6918198630/"
+  }
+]

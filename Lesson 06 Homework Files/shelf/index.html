@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>jQuery :: Lesson 6 :: AJAX</title>
+
+		<!-- Tip: Start src & href links with no slash for relative paths. -->
+		<script src="script/jquery.1.9.1.js"></script>
+		<script src="script/jquery.easing.min.js"></script>
+		<script src="script/jquery.cycle.all.js"></script>
+		<script src="script/jquery-ui-1.10.3.custom.min.js"></script>
+
+		<link rel="stylesheet" href="./css/style.css"/>
+
+		<script type="text/javascript">
+
+var shelfTemplate = '<ul class="shelf">%{shelf}</ul>',
+    posterTemplate = '<li class="shelf-item shelf-position-%{position}" style="background-image: url(\'%{imageUrl}\')"><div class="meta">%{inStock} - %{price}</div></li>';
+
+$(document).ready(function() {
+	// Set up our carousel.
+	var $carousel = $('.carousel-wrapper');
+	$carousel.cycle({
+		fx: 'scrollHorz',
+		speed: 400,
+		height: $carousel.height(),
+		width: $carousel.width(),
+		fit: true
+	}).cycle('pause');
+
+	// Set up the carousel buttons.
+	$('.nav-arrow-left').click(function() {
+		$carousel.cycle('prev');
+	});
+	$('.nav-arrow-right').click(function() {
+		$carousel.cycle('next');
+	});
+
+	// Animate in.
+	$('ul.shelf > li').animate({ top: 0, left: 0 }, 700, 'easeOutBounce');
+
+	// Set up hover effect and click handler.
+	$('ul.shelf > li').hover(
+		function() { $(this).children('.meta').stop().animate({ bottom: 0 }, 250) },
+		function() { $(this).children('.meta').stop().animate({ bottom: -22 }, 100) }
+	).click(function() {
+		var img = $(this).css('background-image');
+		$('#customize-poster').css('background-image', img);
+		$('#customize-pane-wrapper').css('display', 'block');
+	});
+	// Do initial setup on the customization pane.
+	$('.customize-poster-caption').draggable({ containment: 'parent' });
+	$('.customize-caption-input').on('propertychange input', function() {
+		var val = this.value,
+			index = $(this).data('index');
+		if (val && val.length > 100) val = this.value = val.substr(0, 100);
+		$('#customize-poster-caption-' + index).text(val);
+	});
+	// Set up new caption button.
+	$('#add-caption-button').click(function() {
+		var $caption = $('.customize-caption').last().clone(true),
+			$textarea = $caption.find('textarea'),
+			index = $textarea.data('index') + 1;
+		$textarea.data('index', index);
+		$textarea.val(null);
+		$caption.appendTo('#customize-captions');
+		var $posterCaption = $('.customize-poster-caption').clone(false);
+		$posterCaption.attr('id', 'customize-poster-caption-' + index);
+		$posterCaption.text('');
+		$posterCaption.css('top', 0).css('left', 0);
+		$posterCaption.appendTo('#customize-poster');
+		$posterCaption.draggable({ containment: 'parent' });
+	});
+	// Set up click-to-close.
+	$('#customize-pane-wrapper').click(function(evt) {
+		if (evt.target !== this) return;
+		$(this).css('display', 'none');
+	});
+
+});
+
+		</script>
+
+	</head>
+
+	<body>
+		<h1>The Poster Store</h1>
+		<div class="shelf-wrapper">
+			<h2 class="category"><!-- Shelf category title goes here. --></h2>
+			<div class="nav-arrow nav-arrow-left">&#xab;</div>
+			<div class="carousel-wrapper">
+				<!-- Shelves full of posters go here. -->
+			</div>
+			<div class="nav-arrow nav-arrow-right">&#xbb;</div>
+		</div>
+		<div id="customize-pane-wrapper">
+			<div id="customize-pane">
+				<div id="customize-form">
+					<h3>Custom captions</h3>
+					<div id="customize-captions">
+						<div class="customize-caption">
+							<div class="customize-label">Caption:</div>
+							<textarea data-index=1 class="customize-caption-input"></textarea>
+						</div>
+					</div>
+					<button id="add-caption-button">+ Add caption</button>
+					<div id="customize-length-warning">Max 100 characters per caption.</div>
+				</div>
+				<div id="customize-poster">
+					<div class="customize-poster-caption walter-white" id="customize-poster-caption-1"></div>
+				</div>
+			</div>
+		</div>
+		<div id="footer">&copy;2013 Gymnasium Posters Inc.</div>
+	</body>
+</html>
