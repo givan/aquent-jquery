@@ -14,12 +14,13 @@ $(document.head).append('<link rel="stylesheet" href="gymnasium-tabs/gymnasium-t
 $.fn.makeTabsFor = function(contentSelector) {
 	var $tabs = this,
 		$contents = $(contentSelector);
-	if ($tabs.length !== $contents.length) throw new Error('Content selector must return same number of elements as receiver.');
-	$tabs.each(function(tab, i) {
+	if ($tabs.length !== $contents.length)
+        throw new Error('Content selector must return same number of elements as receiver.');
+	$tabs.each(function(i, tab) {
 		var $tab = $(tab),
 			$content = $($contents[i]);
 		// Closures are magic!
-		$tab.each(function() {
+		$tab.click(function() {
 			$tabs.removeClass('active');
 			$tab.addClass('active');
 			$contents.removeClass('active');
@@ -27,7 +28,7 @@ $.fn.makeTabsFor = function(contentSelector) {
 		})
 	})
 	// Set initial state.
-	$tabs.addClass('active first');
+	$tabs.first().addClass('active first');
 	$tabs.last().addClass('last');
-	$contents.addClass('active');
+	$contents.first().addClass('active');
 };
