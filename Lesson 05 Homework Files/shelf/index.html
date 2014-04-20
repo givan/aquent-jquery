@@ -1,119 +1,246 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>jQuery :: Lesson 5 :: User Events</title>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery :: Lesson 5 :: User Events</title>
 
-		<!-- Tip: Start src & href links with no slash for relative paths. -->
-		<script src="script/jquery.1.9.1.js"></script>
-		<script src="script/jquery.easing.min.js"></script>
-		<script src="script/jquery.cycle.all.js"></script>
+    <!-- Tip: Start src & href links with no slash for relative paths. -->
+    <script src="script/jquery.1.9.1.js"></script>
+    <script src="script/jquery.easing.min.js"></script>
+    <script src="script/jquery.cycle.all.js"></script>
+    <script src="script/jquery-ui-1.10.4.custom.min.js"></script>
 
-		<link rel="stylesheet" href="./css/style.css"/>
+    <link rel="stylesheet" href="./css/style.css"/>
 
-		<script type="text/javascript">
+    <script type="text/javascript">
 
-$(document).ready(function() {
-	// Set up our carousel.
-	var $carousel = $('.carousel-wrapper');
-	$carousel.cycle({
-		fx: 'scrollHorz',
-		speed: 400,
-		height: $carousel.height(),
-		width: $carousel.width(),
-		fit: true
-	}).cycle('pause');
+        $(document).ready(function () {
+            // Set up our carousel.
+            var $carousel = $('.carousel-wrapper');
+            $carousel.cycle({
+                fx: 'scrollHorz',
+                speed: 400,
+                height: $carousel.height(),
+                width: $carousel.width(),
+                fit: true
+            }).cycle('pause');
 
-	// Set up the carousel buttons.
-	$('.nav-arrow-left').click(function() {
-		$carousel.cycle('prev');
-	});
-	$('.nav-arrow-right').click(function() {
-		$carousel.cycle('next');
-	});
+            // Set up the carousel buttons.
+            $('.nav-arrow-left').click(function () {
+                $carousel.cycle('prev');
+            });
+            $('.nav-arrow-right').click(function () {
+                $carousel.cycle('next');
+            });
 
-	// Animate in.
-	$('ul.shelf > li').animate({ top: 0, left: 0 }, 700, 'easeOutBounce');
+            // Animate in.
+            $('ul.shelf > li')
+                    .animate({ top: 0, left: 0 }, 700, 'easeOutBounce'); // animate in
 
-	// Set up hover effect.
-	$('ul.shelf > li').hover(
-		function() { $(this).children('.meta').stop().animate({ bottom: 0 }, 250) },
-		function() { $(this).children('.meta').stop().animate({ bottom: -22 }, 100) }
-	)
+            $('ul.shelf > li')
+                    .hover(
+                        function () { $(this).children('.meta').stop().animate({ bottom: 0 }, 250) },
+                        function () { $(this).children('.meta').stop().animate({ bottom: -22 }, 100)})
+                    .click(function () {
+                        // get the image from the selected element (identified by $(this),
+                        // which is the event handler of click
+                        var img = $(this).css('background-image');
 
-});
+                        // .. and assign it to the poster element
+                        $('#customize-poster').css('background-image', img);
 
-		</script>
+                        // finally display the dialog to the user (initially it's hidden)
+                        $('#customize-pane-wrapper').css('display', 'block');
+                    });
 
-	</head>
+            // initial setup on the customization pane
+            $('.customize-poster-caption').draggable({'containment' : 'parent'});
+            $('.customize-caption-input').on('input', function() {
+                var val = this.value,
+                    index = $(this).data('index');
 
-	<body>
-		<h1>The Poster Store</h1>
-		<div class="shelf-wrapper">
-			<h2 class="category">Flowers</h2>
-			<div class="nav-arrow nav-arrow-left">&#xab;</div>
-			<div class="carousel-wrapper">
-				<ul class="shelf" id="shelf-flowers-1">
-					<li class="shelf-item shelf-position-0" id="shelf-item-0">
-						<div class="meta">In Stock - $14.95</div>
-					</li>
-					<li class="shelf-item shelf-position-1" id="shelf-item-1">
-						<div class="meta">In Stock - $12.95</div>
-					</li>
-					<li class="shelf-item shelf-position-2" id="shelf-item-2">
-						<div class="meta sold-out">Sold Out - $8.95</div>
-					</li>
-					<li class="shelf-item shelf-position-3" id="shelf-item-3">
-						<div class="meta">In Stock - $18.95</div>
-					</li>
-					<li class="shelf-item shelf-position-4" id="shelf-item-4">
-						<div class="meta">In Stock - $4.50</div>
-					</li>
-					<li class="shelf-item shelf-position-5" id="shelf-item-5">
-						<div class="meta">In Stock - $12.95</div>
-					</li>
-				</ul>
-				<ul class="shelf" id="shelf-flowers-2">
-					<li class="shelf-item shelf-position-0" id="shelf-item-6">
-						<div class="meta">In Stock - $14.95</div>
-					</li>
-					<li class="shelf-item shelf-position-1" id="shelf-item-7">
-						<div class="meta sold-out">Sold Out - $8.95</div>
-					</li>
-					<li class="shelf-item shelf-position-2" id="shelf-item-8">
-						<div class="meta">In Stock - $12.95</div>
-					</li>
-					<li class="shelf-item shelf-position-3" id="shelf-item-9">
-						<div class="meta">In Stock - $18.95</div>
-					</li>
-					<li class="shelf-item shelf-position-4" id="shelf-item-10">
-						<div class="meta">In Stock - $4.50</div>
-					</li>
-					<li class="shelf-item shelf-position-5" id="shelf-item-11">
-						<div class="meta">In Stock - $12.95</div>
-					</li>
-				</ul>
-			</div>
-			<div class="nav-arrow nav-arrow-right">&#xbb;</div>
-		</div>
-		<div id="customize-pane-wrapper">
-			<div id="customize-pane">
-				<div id="customize-form">
-					<h3>Custom captions</h3>
-					<div id="customize-captions">
-						<div class="customize-caption" id="customize-caption-1">
-							<div class="customize-label">Caption:</div>
-							<textarea class="customize-caption-input"></textarea>
-						</div>
-					</div>
-					<button id="add-caption-button">+ Add caption</button>
-					<div id="customize-length-warning">Max 100 characters per caption.</div>
-				</div>
-				<div id="customize-poster">
-					<div class="customize-poster-caption walter-white" id="customize-poster-caption-1">Test Caption.</div>
-				</div>
-			</div>
-		</div>
-		<div id="footer">&copy;2013 Gymnasium Posters Inc.</div>
-	</body>
+                // restrict input to 100 chars max; if more than 100 get only the first 100
+                if (val && val.length > 100) {
+                    val = this.value = val.substr(0, 100);
+                }
+
+                // now show the typed text in the #ustomize-poster-caption-<INDEX>
+                $('#customize-poster-caption-' + index).text(val);
+            });
+            $('input[name=caption-font-1]:radio').change(function() {
+               var isBlack = $(this).val() === 'dark';
+                $('#customize-poster-caption-1')
+                        .toggleClass('walter-white', !isBlack)
+                        .toggleClass('jack-black', isBlack);
+            });
+
+            // implement the add caption button click
+            $('#add-caption-button').click(function() {
+                // clone the last DIV with customize-caption class
+                // then on the clone,
+                //      we want get its id from the data-index and increment the value with 1
+                //      with the new captin id
+                //          replace the DIV customize-caption id
+                //          replace the data-index property
+                //          finally setup the draggable() on the new div
+                var $lastCaption = $('.customize-caption').last();
+                var newId = $lastCaption.find('textarea').data('index') + 1;
+
+                var $caption = $lastCaption.clone(false);
+                var $textarea = $caption.find('textarea');
+
+                // use attr() here since clone() does not clone data elements - very important!!!
+                // for example:
+                // $('.customize-caption').last().find('textarea').data('index')
+                // output: 2
+                // $('.customize-caption').last().clone(false).find('textarea').data('index')
+                // ouptput: 1
+                $textarea.data('index', newId);
+
+                $textarea.val(null);
+                $caption.attr('id', 'customize-caption-' + newId);
+
+                $caption.find('input:radio').each(function(index, element){
+                    $(element).attr('name', 'caption-font-' + newId);
+                });
+
+                $textarea.on('input', function() {
+                    var val = this.value,
+                            index = $(this).data('index');
+
+                    // restrict input to 100 chars max; if more than 100 get only the first 100
+                    if (val && val.length > 100) {
+                        val = this.value = val.substr(0, 100);
+                    }
+
+                    // now show the typed text in the #ustomize-poster-caption-<INDEX>
+                    $('#customize-poster-caption-' + index).text(val);
+                });
+
+                $caption.appendTo('#customize-captions');
+
+                // now define a new poster by cloning the customize-poster-caption without the events - see the false param
+                var $posterCaption = $('.customize-poster-caption').last().clone(false); // we do not want to clone
+                // the draggable() event handler, hence false param here
+
+                $posterCaption.attr('id', 'customize-poster-caption-' + newId);
+                $posterCaption.css('top', 0).css('left', 0); // position the new poster on top of other existing poster
+                $posterCaption.text(''); // remove its text
+                $posterCaption.appendTo('#customize-poster');
+                $posterCaption.draggable({"containment" : "parent"}); // make it draggable
+
+                // get the value of the checked font:
+                $caption.children('input[name=caption-font-' + newId + ']:radio').change(function() {
+
+                    var isBlack = $(this).val() === 'dark';
+                    $('#customize-poster-caption-' + newId)
+                            .toggleClass('walter-white', !isBlack)
+                            .toggleClass('jack-black', isBlack);
+                });
+
+            });
+
+            // close the customize-pane-wrapper when clicked outside of its borders
+            $('#customize-pane-wrapper').click(function(evt) {
+                // here the trick is the CSS for customize-pane-wrapper
+                // this DIV is position:absolute and top,left, right and bottom of 0, which
+                // means that it occupies the whole screen area. So the check below
+                // verifies if the user clicked within the child elements of customize-pane-wrapper,
+                // or if not within the child, that means it should be closed
+                // another thing to notice here is the z-index of customize-pane-wrapper to put it on top of
+                // everything else
+                if (evt.target !== this) return;
+                // where the user clicked (the target) is outside of the current element
+                // which for us means close the customize-pane-wrapper element
+
+                // clean up the posterCaptions and the caption area
+                $('.customize-poster-caption:not(:first)').empty();
+                $('.customize-poster-caption:first').text('').css('top', 0).css('left', 0);
+
+                $('.customize-caption:not(:first)').remove();
+                $('.customize-caption:first').find('textarea').val(null);
+
+                $(this).css('display', 'none');
+            });
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+<h1>The Poster Store</h1>
+
+<div class="shelf-wrapper">
+    <h2 class="category">Flowers</h2>
+
+    <div class="nav-arrow nav-arrow-left">&#xab;</div>
+    <div class="carousel-wrapper">
+        <ul class="shelf" id="shelf-flowers-1">
+            <li class="shelf-item shelf-position-0" id="shelf-item-0">
+                <div class="meta">In Stock - $14.95</div>
+            </li>
+            <li class="shelf-item shelf-position-1" id="shelf-item-1">
+                <div class="meta">In Stock - $12.95</div>
+            </li>
+            <li class="shelf-item shelf-position-2" id="shelf-item-2">
+                <div class="meta sold-out">Sold Out - $8.95</div>
+            </li>
+            <li class="shelf-item shelf-position-3" id="shelf-item-3">
+                <div class="meta">In Stock - $18.95</div>
+            </li>
+            <li class="shelf-item shelf-position-4" id="shelf-item-4">
+                <div class="meta">In Stock - $4.50</div>
+            </li>
+            <li class="shelf-item shelf-position-5" id="shelf-item-5">
+                <div class="meta">In Stock - $12.95</div>
+            </li>
+        </ul>
+        <ul class="shelf" id="shelf-flowers-2">
+            <li class="shelf-item shelf-position-0" id="shelf-item-6">
+                <div class="meta">In Stock - $14.95</div>
+            </li>
+            <li class="shelf-item shelf-position-1" id="shelf-item-7">
+                <div class="meta sold-out">Sold Out - $8.95</div>
+            </li>
+            <li class="shelf-item shelf-position-2" id="shelf-item-8">
+                <div class="meta">In Stock - $12.95</div>
+            </li>
+            <li class="shelf-item shelf-position-3" id="shelf-item-9">
+                <div class="meta">In Stock - $18.95</div>
+            </li>
+            <li class="shelf-item shelf-position-4" id="shelf-item-10">
+                <div class="meta">In Stock - $4.50</div>
+            </li>
+            <li class="shelf-item shelf-position-5" id="shelf-item-11">
+                <div class="meta">In Stock - $12.95</div>
+            </li>
+        </ul>
+    </div>
+    <div class="nav-arrow nav-arrow-right">&#xbb;</div>
+</div>
+<div id="customize-pane-wrapper">
+    <div id="customize-pane">
+        <div id="customize-form">
+            <h3>Custom captions</h3>
+
+            <div id="customize-captions">
+                <div class="customize-caption" id="customize-caption-1">
+                    <div class="customize-label">Caption:</div>
+                    <textarea data-index='1' class="customize-caption-input"></textarea>
+                    <input type="radio" name="caption-font-1" value="dark">Dark</input>
+                    <input type="radio" name="caption-font-1" value="white" checked="true">White</input>
+                </div>
+            </div>
+            <button id="add-caption-button">+ Add caption</button>
+            <div id="customize-length-warning">Max 100 characters per caption.</div>
+        </div>
+        <div id="customize-poster">
+            <div class="customize-poster-caption walter-white" id="customize-poster-caption-1"></div>
+        </div>
+    </div>
+</div>
+<div id="footer">&copy;2013 Gymnasium Posters Inc.</div>
+</body>
 </html>
