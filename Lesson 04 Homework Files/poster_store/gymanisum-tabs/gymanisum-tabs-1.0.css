@@ -1,0 +1,24 @@
+/* tabbifacation */
+#categories h3 {
+    float: left;
+    padding: 4px;
+    margin-right: 3px;
+    border: 1px solid black;
+    border-bottom-width: 0px;
+    background-color: #eee;
+    cursor: pointer;
+}
+#categories h3.active{
+    background-color: transparent;
+}
+
+#categories ul {
+    display: none;
+}
+#categories ul.active{
+    display: block;
+    position: absolute;
+    margin-top: 34px;
+    border: 1px solid black;
+    width: 240px;
+}
