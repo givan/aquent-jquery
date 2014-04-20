@@ -1,10 +1,15 @@
 $(document.head).append('<link rel="stylesheet" href="gymanisum-tabs/gymanisum-tabs-1.0.css"/>');
 
-// tabbify plugin will be called on the '#categories' element
-// which is what 'this' refers to it here
-$.fn.tabbify =function () {
-    var $tabs = this.find('h3'); //
-    var $contents = this.find('ul');
+/*
+* The receiver will be the element which will be the tabs
+*
+* To use, select your tabs and then call makeTabsFor() passing in the conetnt of the tabs
+* such as:
+* $('#categories > h3').makeTabsFor('#categories > ul');
+* */
+$.fn.makeTabsFor =function (contentSelector) {
+    var $tabs = this; //
+    var $contents = $(contentSelector);
 //                SetupTab(0, $tabs, $contents);
 //                SetupTab(1, $tabs, $contents);
 //                SetupTab(2, $tabs, $contents);
@@ -13,6 +18,10 @@ $.fn.tabbify =function () {
         var $tab = $(tab);
         // each() will give you the raw HTML element, but we want the jQuery object hence we use $(tab)
         var $content = $($contents[i]);
+
+        if ($tabs.length !== $contents.length) {
+            throw new Error('Content selector must have the same number of elements as receiver');
+        }
 
         $tab.click(function () {
             $tabs.removeClass('active');
